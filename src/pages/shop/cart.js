@@ -45,9 +45,7 @@ const Cart = () => {
                 </tr>
               </tbody>
             )}
-
             </Table>
-                
           </div>
           <div>
             <div className="cardCart">
@@ -93,8 +91,6 @@ const Cart = () => {
                 <div className="text-end">
                   <Button className="mx-2 my-2 " href="/checkout" size="lg" type="submit" variant="success">Proceed To Checkout</Button>
                 </div>
-
-
               </Card>
               </Col>
               </Row>

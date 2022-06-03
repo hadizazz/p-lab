@@ -17,7 +17,9 @@ const CardDetail = () => {
     return item.kategori === thisProduct.kategori;
     
   });
-
+  function refreshPage(){      
+    window.parent.location = window.child.location; 
+   }
 
   return (
     <div>
@@ -29,9 +31,8 @@ const CardDetail = () => {
       <Row xs={1} lg={3} md={2} sm={2} xl={4} className="g-4">
       {result.map((item,index) => {
                 return (
-                  <Col className="my-5"  >
-                     
-                    <Link to={{ pathname: `/detail/${item.id}`, 
+                  <Col className="my-5" id="#featured" >
+                    <Link onClick={refreshPage} to={{ pathname: `/detail/${item.id}`, 
                     item: item,}} >
                       <Card style={{ width: "100%", height: "auto" }}>
                         <Card.Img
