@@ -1,17 +1,34 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Card from 'react-bootstrap/Card'
 import { Button } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import dataProduk from "../../data.json";
 import {Link} from "react-router-dom"
+import axios from "axios";
 
 const Cardhome = () => {
-  const [data,setData] = useState(dataProduk)
-  const result = data.filter((item) => {
+  const [products,setProduct] = useState([])
+  const [productImage, setProductImage] = useState('')
+  const result = products.filter((item) => {
     return item.kategori === 'anime';
     
   });
+  useEffect(() =>{ 
+    getAllProducts();
+  },[]);
+  
+  const getAllProducts = async () => {
+    const response = await axios.get(`http://localhost:3001/products`)
+    const a = response.data
+    setProduct((response.data).slice(a.length - 10,a.length));
+    setProductImage(response.image)
+  }
+  function numberWithCommas(x) {
+
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+  // console.log(products)
 
   return (
     <div className='container my-3'>
@@ -26,21 +43,22 @@ const Cardhome = () => {
 
       </Row>
       <Row xs={1} lg={3} md={2} sm={2} xl={5} className="g-4">
-      {data.map((item,index) => {
+      {products.map((item,index) => {
                 return (
-                  <Col className="my-5" key={index} >
+                  <Col className="my-5" key={item.id} >
                      
-                    <Link to={{ pathname: `/detail/${item.id}`, 
-                    item: item,}} >
+                    <Link to={`/detail/${item.id}`} >
                       <Card style={{ width: "100%", height: "auto" }}>
                         <Card.Img
                           className="__card"
                           variant="top"
-                          src={item.image}
+                          src={`http://localhost:3001/image/${item.image}`}
                         />
-                        <Card.Body>
-                          <Card.Title>{item.name}</Card.Title>
-                          <Card.Text>Rp.{item.price}</Card.Text>
+                        <Card.Body className="text-start" >
+                          <div style={{height:"70px"}}>
+                            <Card.Title style={{fontSize:"15px"}} >{item.name}</Card.Title>
+                          </div>
+                          <Card.Text style={{color:"red"}}>Rp.{numberWithCommas(item.price)}</Card.Text>
 
                           <Card.Footer>
                             <small className="text-muted">

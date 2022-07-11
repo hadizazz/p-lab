@@ -14,6 +14,9 @@ body{
   min-height: 100%;
 }
 /* navbar */
+.drpdwn a{
+  color: #000;
+}
 .nvbr{
   font-size: 1.3rem;
   color: #000;
@@ -48,6 +51,12 @@ body{
 /* navbar */
 
 /* Profile */
+.chck-box{
+  padding-bottom:10px;
+}
+.chck-box,input,label{
+  padding-right: 20px;
+}
 .profile{
   border: 1px solid #d3ced2;
   padding: 20px;
@@ -285,9 +294,25 @@ a{
 #review{
   display: flex;
 }
+.cIKpxU::after {
+  display: none;
+}
 
-/* Register */
+/*  */
 
+/* addProduct */
+.addImage{
+  max-height:10rem;
+  display: flex;
+  max-width: 10rem;
+  object-fit: cover;
+  justify-content: start;
+}
+.addImage img{
+  width:100%;
+  height:auto;
+  object-fit: cover;
+}
 
 /* Cart */
 .tabImg{

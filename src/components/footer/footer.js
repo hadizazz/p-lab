@@ -10,13 +10,13 @@ import {AiFillGithub} from 'react-icons/ai';
 
 function Footer() {
   return (
-    <footer class="footer-distributed">
+    <footer className="footer-distributed">
         <Container>
-          <div class="footer-left">
+          <div className="footer-left">
 
             <h3>Action<span>figure</span></h3>
 
-            <p class="footer-links">
+            <p className="footer-links">
               <a href="#">Home</a>
               ·
               <a href="#">Blog</a>
@@ -30,9 +30,9 @@ function Footer() {
               <a href="#">Contact</a>
             </p>
 
-            <p class="footer-company-name">Plabstore © 2022 plabstore, Inc. © 2022 Plabstore, Inc.</p>
+            <p className="footer-company-name">Plabstore © 2022 plabstore, Inc. © 2022 Plabstore, Inc.</p>
 
-            <div class="footer-icons">
+            <div className="footer-icons">
 
               <a href="#"><AiFillFacebook /></a>
               <a href="#"><AiOutlineTwitter /></a>
@@ -43,7 +43,7 @@ function Footer() {
 
           </div>
 
-          <div class="footer-right">
+          <div className="footer-right">
 
             <p>Contact Us</p>
 

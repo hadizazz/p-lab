@@ -13,10 +13,7 @@ function CarouselHome() {
             alt="First slide"
             width="100%"
           />
-          <Carousel.Caption>
-            <h2>First slide label</h2>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
+        
         </Carousel.Item>
         <Carousel.Item interval={500} >
           <img style={{objectFit:"cover",height:"50rem" ,}}
@@ -26,10 +23,7 @@ function CarouselHome() {
             width="100%"
             
           />
-          <Carousel.Caption>
-            <h2>Second slide label</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
+          
         </Carousel.Item>
         <Carousel.Item >
           <img style={{objectFit:"cover",height:"50rem" ,}}
@@ -38,12 +32,6 @@ function CarouselHome() {
             alt="Third slide"
             width="100%"
           />
-          <Carousel.Caption >
-            <h2 className="font-weight-bold">Third slide label</h2>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
     </div>

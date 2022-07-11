@@ -4,14 +4,11 @@ import {useCart} from "react-use-cart"
 import {BsTrash} from "react-icons/bs"
 
 const Cart = () => {
-  const {items,isEmpty,totalUniqueItems,totalItems,cartTotal,updateItemQuantity,removeItem,emptyCart} = useCart();
+  const {items,isEmpty,cartTotal,updateItemQuantity,removeItem} = useCart();
   if (isEmpty) return <div className="my-5 py-5"><h1 className="py-5 my-5">Your Cart is Empty</h1><Button href="Shop" variant="info" size="lg">Return To Shop</Button> </div>
     
   return (
     <Container style={{ height: "100%" }}>
-      {/* <section>
-          {console.warn(items)}
-      </section> */}
       <Row lg={1} md={1} sm={1} >
         <div className="my-5">
           <h3 className="text-start my-5">Cart</h3>
@@ -29,7 +26,7 @@ const Cart = () => {
            {items.map((item, index) => 
               <tbody className='text-center'>
                 <tr>
-                  <td  className="tabImg"><img className="imgCart" style={{height:"50%"}} src = {item.image}/></td>
+                  <td  className="tabImg"><img className="imgCart" style={{height:"50%"}} src={`http://localhost:3001/image/${item.image}`}/></td>
                   <td className="text-center p-0 m-0">{item.name}</td>
                   <td>{item.price}</td>
                   <td>
@@ -53,7 +50,7 @@ const Cart = () => {
                 <Col>
                 </Col>
 
-                <Col>
+                <Col> 
               <Card>
                 <Card.Header>Cart Totals</Card.Header>
                 <Card.Body>

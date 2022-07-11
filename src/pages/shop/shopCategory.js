@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import dataProduk from "../../data.json";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import axios from "axios";
 
-const Shop = () => {
+const ShopCategory = () => {
   const [sort, setSort] = useState("");
   const [products, setProduct] = useState([]);
   const [review, setReview] = useState("");
@@ -18,9 +17,14 @@ const Shop = () => {
   const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const { kategori } = useParams();
+
   const getAllProducts = async () => {
-    const response = await axios.get(`http://localhost:3001/products`);
+    const response = await axios.get(
+      `http://localhost:3001/products/kategori/${kategori}`
+    );
     setProduct(response.data);
+    console.log(kategori);
   };
   const getAllReview = async () => {
     const response = await axios.get(`http://localhost:3001/review/allreview`);
@@ -29,11 +33,8 @@ const Shop = () => {
   const onChange = (value) => {
     setSort(value);
   };
-  // useEffect(() => {
 
-  // });
   useEffect(() => {
-    getAllReview();
     if (!sort) {
       getAllProducts();
     }
@@ -53,13 +54,14 @@ const Shop = () => {
       console.log(sorted);
     }
     if (sort === "rating") {
-      const sorted = [...products].sort((a, b) => b.rating - a.rating);
-      setProduct(sorted);
+      const sorted = [...review].sort((a, b) => b.rating - a.rating);
+      setReview(sorted);
+      console.log(sorted);
     }
     console.log(sort);
-    console.log(products);
+    getAllReview();
   }, [sort]);
-
+  console.log(products);
   const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -171,4 +173,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ShopCategory;

@@ -1,23 +1,33 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 import "../../assets/css/style.css"
-import { Navbar } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Button, FormControl } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
+import { Nav,Navbar,Container,NavDropdown} from 'react-bootstrap';
 import {AiOutlineShoppingCart} from "react-icons/ai"
-import Home from "../../pages/home/home"
-import Login from "../../pages/account/login"
 import { useCart } from "react-use-cart"
-import DetailProduct from '../../pages/product/DetailProduct';
-import Carts from "../../pages/shop/cart"
+import Carts   from "../../pages/shop/cart"
 
 const Navbars = () => {
-  const {
-    isEmpty, totalUniqueItems, Items, totalItems, updateItemQuantity, removeItem, emptyCart,
-  } = useCart();
-  return (
+  const {totalItems} = useCart();
+  const [statusNavbar, setStatusNavbar] = useState(false)
+ 
+  const accessToken = localStorage.getItem("accessToken");
+  const tokens = () => {
+    if (accessToken) {
+      setStatusNavbar(true)
+    } else {
+      setStatusNavbar(false)
+    }    
+  }
+  useEffect(()=>{
+    const a = (localStorage.getItem("accessToken"));
+    tokens()
+  })
+  const logout = () => {
+    localStorage.removeItem('accessToken');
+    setStatusNavbar(false)
+
+  };
+
+  return ( 
     <div className="nvbr">
       <Navbar bg="light" expand="md">
         <Container fluid>
@@ -31,22 +41,34 @@ const Navbars = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link  style={{ color: "#000" }} href="/">
+              <Nav.Link style={{ color: "#000" }} href="/">
                 Home
               </Nav.Link>
               <Nav.Link style={{ color: "#000" }} href="/shop">
                 Shop
               </Nav.Link>
-             
             </Nav>
-            <Nav.Link style={{ color: "#000" }} href="/login">
-              Account
-            </Nav.Link>
-            <a className="btn btn-lg _cart" href="/cart" role="button">
-              <AiOutlineShoppingCart /> 
-              <span>{totalItems}</span>
-            </a>
-           
+            {statusNavbar ?(
+                <>
+              <div className="drpdwn">
+                <NavDropdown title="Account" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item to="/login" onClick={logout} >Logout</NavDropdown.Item>
+                </NavDropdown>
+              </div>
+
+                <a className="btn btn-lg _cart" href="/cart" role="button">
+                  <AiOutlineShoppingCart />
+                  <span>{totalItems}</span>
+                </a>
+              </>
+            ): (
+              <Nav.Link className="mx-5" style={{ color: "#000"}} href="/login">
+                Login
+              </Nav.Link>
+            )}
+
           </Navbar.Collapse>
         </Container>
       </Navbar>
