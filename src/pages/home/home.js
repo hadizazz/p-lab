@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
 import Carousel from "../../components/carousel/carouselHome";
 import Card from "../../components/card/card";
@@ -11,23 +10,6 @@ import { FaPhoneSquareAlt } from "react-icons/fa";
 function Home() {
   const accessToken = localStorage.getItem("accessToken");
   console.log(accessToken);
-  const [products, setProduct] = useState([]);
-
-  const handle_category = async () => {
-    // e.preventDefault();
-    const response = await axios.get(`http://localhost:3001/products`);
-    // const kat = JSON.stringify(res.kategori);
-    // console.log(res.data.kategori);
-    // const response = await axios.get(
-    //   `http://localhost:3001/products/kategori/${kat}`
-    // );
-    setProduct(response.data);
-    // console.log(res);
-    // console.log(kat);
-    // console.log(kat);
-    console.log(response);
-  };
-  console.log(products);
   return (
     <div>
       <Carousel />
