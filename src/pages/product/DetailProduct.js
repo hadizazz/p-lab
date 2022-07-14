@@ -32,9 +32,7 @@ const DetailProduct = () => {
     ganti(response.data.image);
     setSource(products.image);
     setProductImage(response.image);
-
     setReviews(response.data.review);
-    // setRating(response.rating)
     console.log(response.data.review);
   };
   const accessToken = localStorage.getItem("accessToken");
@@ -70,7 +68,6 @@ const DetailProduct = () => {
       rating: rating,
       description: description,
     };
-    console.log(review);
     await axios.post(`http://localhost:3001/review/addreview/${id}`, review);
     navigate(`/detail/${id}`);
   };
